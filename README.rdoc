@@ -27,6 +27,8 @@ The following things are tested:
 2. does the number range and length seem right? (see http://en.wikipedia.org/wiki/Bank_card_number)
 3. is it one of several well-known test numbers?
 
+Note: this only validates that the number is of a valid format, it does not check if it is an actual credit card number. You will need to talk to your payment gateway to learn that.
+
 You can also instantiate a validator to work with card types:
   v = CreditCardValidator::Validator.new(options) #avail. options are the same as above
 
