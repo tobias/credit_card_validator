@@ -39,7 +39,7 @@ You can also instantiate a validator to work with card types:
   v.is_master_card?(number)
   # etc. - works for all of the supported card types
 
-  v.is_valid_card_type?(number)
+  v.is_allowed_card_type?(number)
 
 == INSTALL:
 
