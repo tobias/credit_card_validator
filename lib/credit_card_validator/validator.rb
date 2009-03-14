@@ -65,16 +65,15 @@ module CreditCardValidator
 
       (total[0] % 10 == 0)
     end
-
-    def method_missing(method, *args)
-      meth = method.to_s
-      if meth  =~ /^is_.*?\?/
-        card_is(meth[3..-2], args[0])
-      else
-        super
+    
+    CARD_TYPES.keys.each do |card_type|
+      self.class_eval do
+        define_method "is_#{card_type.to_s}?" do |number|
+          card_is(card_type, number)
+        end
       end
     end
-
+    
     protected
     def strip(number)
       number.gsub(/\s/,'')
