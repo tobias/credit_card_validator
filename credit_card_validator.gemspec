@@ -5,15 +5,14 @@ Gem::Specification.new do |s|
   s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["FIXME full name"]
-  s.date = %q{2009-03-12}
-  s.description = %q{A gem that provides credit card validation. It is basically a ruby port of Thomas Fuch's (madrobby) javascript credit card validator (http://github.com/madrobby/creditcard_js).}
-  s.email = ["FIXME email"]
+  s.authors = ["Tobias Crawley"]
+  s.date = %q{2009-03-17}
+  s.description = %q{A gem that provides credit card validation. It is basically a ruby port of the javascript credit card validator by Thomas Fuchs (madrobby) (http://github.com/madrobby/creditcard_js).}
+  s.email = ["tcrawley@gmail.com"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.rdoc"]
   s.files = ["History.txt", "Manifest.txt", "README.rdoc", "Rakefile", "lib/credit_card_validator.rb", "lib/credit_card_validator/validator.rb", "test/test_credit_card_validator.rb", "test/test_helper.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/tobias/credit_card_validator}
-  s.post_install_message = %q{PostInstall.txt}
   s.rdoc_options = ["--main", "README.rdoc"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{credit_card_validator}

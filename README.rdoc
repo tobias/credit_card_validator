@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-A gem that provides credit card validation. It is basically a ruby port of Thomas Fuch's (madrobby) javascript credit card validator (http://github.com/madrobby/creditcard_js).
+A gem that provides credit card validation. It is basically a ruby port of the javascript credit card validator by Thomas Fuchs (madrobby) (http://github.com/madrobby/creditcard_js).
 
 == SYNOPSIS:
 
