@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + '/test_helper.rb'
 class TestCreditCardValidator < Test::Unit::TestCase
 
   def setup
-    @v = CreditCardValidator::Validator.new
-    @v_test_numbers_valid = CreditCardValidator::Validator.new(:test_numbers_are_valid => true)
+    @v = CreditCardValidator::Validator
+    @v.options.clear
   end
   
   
@@ -62,28 +62,25 @@ class TestCreditCardValidator < Test::Unit::TestCase
   
   def test_test_number_validity_cases
     assert !@v.valid?('378282246310005')
-    assert @v_test_numbers_valid.valid?('378282246310005')
+    @v.options[:test_numbers_are_valid] = true
+    assert @v.valid?('378282246310005')
   end
 
   def test_is_allowed_card_type
-    assert @v_test_numbers_valid.is_allowed_card_type?('378282246310005')
-    @v_test_numbers_valid.options[:allowed_card_types] = [:visa]
-    assert @v_test_numbers_valid.is_allowed_card_type?('4012888888881881')
-    assert !@v_test_numbers_valid.is_allowed_card_type?('378282246310005')
+    assert @v.is_allowed_card_type?('378282246310005')
+    @v.options[:allowed_card_types] = [:visa]
+    assert @v.is_allowed_card_type?('4012888888881881')
+    assert !@v.is_allowed_card_type?('378282246310005')
 
   end
     
   def test_card_type_allowance
-    assert @v_test_numbers_valid.valid?('378282246310005')
-    @v_test_numbers_valid.options[:allowed_card_types] = [:visa]
-    assert @v_test_numbers_valid.valid?('4012888888881881')
-    assert !@v_test_numbers_valid.valid?('378282246310005')
+    @v.options[:test_numbers_are_valid] = true
+    assert @v.valid?('378282246310005')
+    @v.options[:allowed_card_types] = [:visa]
+    assert @v.valid?('4012888888881881')
+    assert !@v.valid?('378282246310005')
     
   end
   
-  def test_module_level_valid
-    assert !CreditCardValidator.valid?('378282246310005')
-    assert CreditCardValidator.valid?('378282246310005', :test_numbers_are_valid => true)
-  end
-
 end

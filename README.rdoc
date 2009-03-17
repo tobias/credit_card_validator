@@ -9,13 +9,15 @@ A gem that provides credit card validation. It is basically a ruby port of the j
 == SYNOPSIS:
 
 Usage:
-  CreditCardValidator.valid?('1111 2222 3333 4444')
+  CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
   # allow test numbers to be valid (for development) 
-  CreditCardValidator.valid?('1111 2222 3333 4444', :test_numbers_are_valid => true)
+  CreditCardValidator::Validator.options[:test_numbers_are_valid] = true
+  CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
   # limit the card types you allow
-  CreditCardValidator.valid?('1111 2222 3333 4444', :allowed_card_types => [:visa, :mastercard])
+  CreditCardValidator::Validator.options[:allowed_card_types] = [:visa, :mastercard]
+  CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
 Supported card types:
   :amex, :discover, :diners_club, :master_card, :visa
@@ -29,17 +31,16 @@ The following things are tested:
 
 Note: this only validates that the number is of a valid format, it does not check if it is an actual credit card number. You will need to talk to your payment gateway to learn that.
 
-You can also instantiate a validator to work with card types:
-  v = CreditCardValidator::Validator.new(options) #avail. options are the same as above
+You can also use the validator to learn about the type of the card:
 
   # gives the type back as a string (visa, master_card, etc)
-  v.card_type(number)
+  CreditCardValidator::Validator.card_type(number)
   
-  v.is_visa?(number)
-  v.is_master_card?(number)
+  CreditCardValidator::Validator.is_visa?(number)
+  CreditCardValidator::Validator.is_master_card?(number)
   # etc. - works for all of the supported card types
 
-  v.is_allowed_card_type?(number)
+  CreditCardValidator::Validator.is_allowed_card_type?(number)
 
 == INSTALL:
 
