@@ -44,7 +44,6 @@ You can also use the validator to learn about the type of the card:
 
 == INSTALL:
 
-* gem sources -a http://gems.github.com
 * sudo gem install tobias-credit_card_validator
 
 == LICENSE:
