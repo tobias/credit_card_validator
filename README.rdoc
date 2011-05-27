@@ -20,7 +20,7 @@ Usage:
   CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
 Supported card types:
-  :amex, :discover, :diners_club, :master_card, :visa
+  :amex, :discover, :diners_club, :master_card, :visa, :maestro
 
 Whitespace is stripped from the number automatically.
 
