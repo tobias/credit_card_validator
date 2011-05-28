@@ -15,6 +15,9 @@ class TestCreditCardValidator < Test::Unit::TestCase
     assert_equal 'amex', @v.card_type('371449635398431')
     assert_equal 'discover', @v.card_type('6011000990139424')
 
+    # Deals with switch and solo.
+    assert_equal 'maestro', @v.card_type('633478111298873700')
+    assert_equal 'maestro', @v.card_type('6759671431256542')
   end
 
   def test_detect_specific_types
@@ -27,6 +30,9 @@ class TestCreditCardValidator < Test::Unit::TestCase
     assert @v.is_diners_club?('30569309025904')
     assert @v.is_amex?('371449635398431')
     assert @v.is_discover?('6011000990139424')
+    assert @v.is_maestro?('6759671431256542')
+    assert !@v.is_maestro?('5555555555554444')
+    assert !@v.is_maestro?('30569309025904')
   end
 
   def  test_luhn_verification
