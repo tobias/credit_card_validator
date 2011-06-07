@@ -44,11 +44,11 @@ You can also use the validator to learn about the type of the card:
 
 == INSTALL:
 
-* gem install credit_card_validator --source http://gemcutter.org
+* gem install credit_card_validator 
 
 == LICENSE:
 
-Copyright (c) 2009 Tobias Crawley & Bruce Hauman
+Copyright (c) 2009-2011 Tobias Crawley & Bruce Hauman
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
