@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name = %q{credit_card_validator}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Tobias Crawley", "Bruce Hauman", "Phil McClure"]
-  s.date = %q{2011-06-07}
+  s.authors = ["Tobias Crawley", "Bruce Hauman", "Phil McClure", "Gabriel Reis", "Eric Young"]
+  s.date = %q{2011-06-17}
   s.description = %q{A gem that provides credit card validation. It is basically a ruby port of the javascript credit card validator by Thomas Fuchs (madrobby) (http://github.com/madrobby/creditcard_js).}
   s.email = ["tcrawley@gmail.com"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.rdoc"]
