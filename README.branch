@@ -1,0 +1,7 @@
+branch: cmdline
+
+Create a command line app for wrapping the validator.
+
+* validate and report on one or more credit card #'s given on the command line
+* validate and report on all the credit card #s given in a file
+* validate and report on all the credit card #s given on stdin
