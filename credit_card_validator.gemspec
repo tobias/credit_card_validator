@@ -33,5 +33,6 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<newgem>, [">= 1.2.3"])
     s.add_dependency(%q<hoe>, [">= 1.8.0"])
+    s.add_dependency(%q<base_app>, [">= 1.0.5"])
   end
 end
