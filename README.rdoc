@@ -46,17 +46,17 @@ You can also use the validator to learn about the type of the card:
 
 The gem comes with a basic command line application that allows you to do validation in a variety of ways.  The utility produces tab delimited output for easy processing by other utilities.
 
-  $ credit_card_validator
+  $ credit_card_validator --help
   Usage: credit_card_validator [options]
       -v, --verboseverbose             Be more verbose.
-      -h, --helphelp                   Request help.
-      -a=sallowed-card-types           Comma Delimited List of allowed card types (default is 'amex,diners_club,discover,maestro,master_card,visa')
+      -h, --help                       Request help.
+      -a=s                             Comma Delimited List of allowed card types (default is 'amex,diners_club,discover,maestro,master_card,visa')
           --allowed-card-types
       -t
           --test-numbers-are-validtest-numbers-are-valid
                                        Allow test Credit Card Numbers to be considred valid.
 
-Directly from the command line:
+You can validate a number directly from the command line:
 
   $  credit_card_validator 5105105105105100
   card_number valid?
