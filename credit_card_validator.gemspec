@@ -19,20 +19,27 @@ Gem::Specification.new do |s|
   s.test_files = ["test/test_credit_card_validator.rb", "test/test_helper.rb"]
   s.executables = %w[credit_card_validator]
 
+  deps = [
+      [%q<newgem>,   [">= 1.2.3"]],
+      [%q<hoe>,      [">= 1.8.0"]],
+      [%q<base_app>, [">= 1.0.5"]]
+  ]
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<newgem>, [">= 1.2.3"])
-      s.add_development_dependency(%q<hoe>, [">= 1.8.0"])
+      deps.each do |name,version|
+        s.add_development_dependency(name,version)
+      end
     else
-      s.add_dependency(%q<newgem>, [">= 1.2.3"])
-      s.add_dependency(%q<hoe>, [">= 1.8.0"])
+      deps.each do |name,version|
+        s.add_dependency(name,version)
+      end
     end
   else
-    s.add_dependency(%q<newgem>, [">= 1.2.3"])
-    s.add_dependency(%q<hoe>, [">= 1.8.0"])
-    s.add_dependency(%q<base_app>, [">= 1.0.5"])
+    deps.each do |name,version|
+      s.add_dependency(name,version)
+    end
   end
 end
