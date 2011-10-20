@@ -46,6 +46,7 @@ module CreditCardValidator
     
       def is_allowed_card_type?(number)
         card_type = card_type(number)
+        return nil if card_type.nil?
         if options[:allowed_card_types] and options[:allowed_card_types].respond_to?('include?')
           options[:allowed_card_types].include?(card_type.to_sym)
         else

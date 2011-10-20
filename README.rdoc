@@ -42,6 +42,63 @@ You can also use the validator to learn about the type of the card:
 
   CreditCardValidator::Validator.is_allowed_card_type?(number)
 
+== Command Line:
+
+The gem comes with a basic command line application that allows you to do validation in a variety of ways.  The utility produces tab delimited output for easy processing by other utilities.
+
+  $ credit_card_validator --help
+  Usage: credit_card_validator [options]
+      -v, --verboseverbose             Be more verbose.
+      -h, --help                       Request help.
+      -a=s                             Comma Delimited List of allowed card types (default is 'amex,diners_club,discover,maestro,master_card,visa')
+          --allowed-card-types
+      -t
+          --test-numbers-are-validtest-numbers-are-valid
+                                       Allow test Credit Card Numbers to be considred valid.
+
+You can validate a number directly from the command line:
+
+  $  credit_card_validator 5105105105105100
+  card_number valid?
+  5105105105105100  false
+
+
+Verbose mode will emit more detailed information:
+
+  $ credit_card_validator -v 5105105105105100
+  credit_card_validator Parameters:
+                   verbose : true
+                      help : 
+        allowed-card-types : amex,diners_club,discover,maestro,master_card,visa
+    test-numbers-are-valid : 
+  
+  card_number is_allowed_card_type? luhn_valid? card_type is_test_number? valid?
+  5105105105105100  true  true  master_card true  false
+
+The option summary is printed to $stderr and is easy to suppress:
+
+  $ credit_card_validator -v 5105105105105100 2>/dev/null
+  card_number is_allowed_card_type? luhn_valid? card_type is_test_number? valid?
+  5105105105105100  true  true  master_card true  false
+
+You may also validate a file full of numbers (one per line):
+
+  $ cat nums.tab
+  5105105105105100
+  4012888888881882
+  $ credit_card_validator -v nums.tab  2>/dev/null
+  card_number is_allowed_card_type? luhn_valid? card_type is_test_number? valid?
+  5105105105105100  true  true  master_card true  false
+  4012888888881882  true  false visa  false false
+
+Even from standard input:
+
+  $ cat nums.tab | credit_card_validator -v   2>/dev/null
+  card_number is_allowed_card_type? luhn_valid? card_type is_test_number? valid?
+  5105105105105100  true  true  master_card true  false
+  4012888888881882  true  false visa  false false
+
+
 == INSTALL:
 
 * gem install credit_card_validator 

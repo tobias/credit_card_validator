@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'base_app'
+require 'credit_card_validator'
+
+class CreditCardValidatorApp < BaseApp
+  attr_accessor :allowed_card_types
+
+  def initialize
+    self.allowed_card_types = CreditCardValidator::CARD_TYPES.keys.sort {|a,b| a.to_s <=> b.to_s }.map(&:to_s).join(",")
+    super
+  end
+
+  def command_line_arguments
+    super | [
+      ['a', 'allowed-card-types=s',   "Comma Delimited List of allowed card types (default is '#{self.allowed_card_types}')"],
+      ['t', 'test-numbers-are-valid', "Allow test Credit Card Numbers to be considred valid."]
+    ]
+  end
+
+  def card_info card_num
+    is_valid = CreditCardValidator::Validator::valid?(card_num)
+    is_valid = false if is_valid.nil?
+    { :is_allowed_card_type? => CreditCardValidator::Validator::is_allowed_card_type?(card_num),
+      :luhn_valid?           => CreditCardValidator::Validator::verify_luhn(card_num),
+      :card_type             => CreditCardValidator::Validator::card_type(card_num),
+      :is_test_number?       => CreditCardValidator::Validator::is_test_number(card_num),
+      :valid?                => is_valid }
+  end
+
+  def validate_card card_num
+      res = card_info card_num
+      all_valid = false unless res[:valid?]
+      if self.verbose
+        puts [
+          card_num,
+          res[:is_allowed_card_type?],
+          res[:luhn_valid?],
+          res[:card_type],
+          res[:is_test_number?],
+          res[:valid?],
+        ].join("\t")
+      else
+        puts [card_num,res[:valid?]].join("\t")
+      end
+  end
+
+  def validate_file fhandle
+    fhandle.readlines.each do |line|
+      line.chomp!
+      validate_card line
+    end
+  end
+
+  def run
+    CreditCardValidator::Validator.options[:test_numbers_are_valid] = self.test_numbers_are_valid
+    CreditCardValidator::Validator.options[:allowed_card_types] = self.allowed_card_types.split(',').map(&:to_sym)
+
+    if self.verbose
+      puts %w[card_number is_allowed_card_type? luhn_valid? card_type is_test_number? valid?].join("\t")
+    else
+      puts %w[card_number valid?].join("\t")
+    end
+
+    all_valid = true
+    if $stdin.tty?
+      if ARGV.empty?
+        $stderr.puts "Error: nothing to validate"
+        exit 1
+      end
+
+      ARGV.each do |thing|
+        if File.exist? thing
+          File.open(thing,'r') do |f|
+            validate_file f
+          end
+        else
+          validate_card thing
+        end
+      end
+    else
+      validate_file $stdin
+    end
+
+    exit all_valid ? 0 : 1
+  end
+end
+
+CreditCardValidatorApp.main
