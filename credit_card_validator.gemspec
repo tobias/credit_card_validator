@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{credit_card_validator}
-  s.version = "1.0.2"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tobias Crawley", "Bruce Hauman", "Phil McClure", "Gabriel Reis", "Eric Young", "Kyle Burton <kyle.burton@gmail.com>"]
