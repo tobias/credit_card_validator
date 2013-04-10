@@ -11,7 +11,7 @@ A gem that provides credit card validation. It is basically a ruby port of the j
 Usage:
   CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
-  # allow test numbers to be valid (for development) 
+  # allow test numbers to be valid (for development)
   CreditCardValidator::Validator.options[:test_numbers_are_valid] = true
   CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
@@ -20,7 +20,7 @@ Usage:
   CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
 Supported card types:
-  :amex, :discover, :diners_club, :master_card, :visa, :maestro
+  :amex, :discover, :diners_club, :master_card, :visa, :maestro, :jcb
 
 Whitespace is stripped from the number automatically.
 
@@ -35,7 +35,7 @@ You can also use the validator to learn about the type of the card:
 
   # gives the type back as a string (visa, master_card, etc)
   CreditCardValidator::Validator.card_type(number)
-  
+
   CreditCardValidator::Validator.is_visa?(number)
   CreditCardValidator::Validator.is_master_card?(number)
   # etc. - works for all of the supported card types
@@ -68,10 +68,10 @@ Verbose mode will emit more detailed information:
   $ credit_card_validator -v 5105105105105100
   credit_card_validator Parameters:
                    verbose : true
-                      help : 
+                      help :
         allowed-card-types : amex,diners_club,discover,maestro,master_card,visa
-    test-numbers-are-valid : 
-  
+    test-numbers-are-valid :
+
   card_number is_allowed_card_type? luhn_valid? card_type is_test_number? valid?
   5105105105105100  true  true  master_card true  false
 
@@ -101,7 +101,7 @@ Even from standard input:
 
 == INSTALL:
 
-* gem install credit_card_validator 
+* gem install credit_card_validator
 
 == LICENSE:
 

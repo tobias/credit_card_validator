@@ -6,8 +6,8 @@ class TestCreditCardValidator < Test::Unit::TestCase
     @v = CreditCardValidator::Validator
     @v.options.clear
   end
-  
-  
+
+
   def test_recognize_card_type
     assert_equal 'visa', @v.card_type('4111111111111111')
     assert_equal 'master_card', @v.card_type('5555555555554444')
@@ -15,6 +15,7 @@ class TestCreditCardValidator < Test::Unit::TestCase
     assert_equal 'amex', @v.card_type('371449635398431')
     assert_equal 'discover', @v.card_type('6011000990139424')
     assert_equal 'maestro', @v.card_type('6759671431256542')
+    assert_equal 'jcb', @v.card_type('3530111333300000')
   end
 
   def test_detect_specific_types
@@ -30,6 +31,8 @@ class TestCreditCardValidator < Test::Unit::TestCase
     assert @v.is_maestro?('6759671431256542')
     assert !@v.is_maestro?('5555555555554444')
     assert !@v.is_maestro?('30569309025904')
+    assert @v.is_jcb?('3530111333300000')
+    assert !@v.is_jcb?('6759671431256542')
   end
 
   def  test_luhn_verification
@@ -56,13 +59,14 @@ class TestCreditCardValidator < Test::Unit::TestCase
     30569309025904 38520000023237 6011111111111117
     6011000990139424 5555555555554444 5105105105105100
     4111111111111111 4012888888881881 4222222222222
+    3530111333300000 3566002020360505
   ).each do |n|
       assert @v.is_test_number(n)
     end
 
     assert !@v.is_test_number('1234')
   end
-  
+
   def test_test_number_validity_cases
     assert !@v.valid?('378282246310005')
     @v.options[:test_numbers_are_valid] = true
@@ -76,14 +80,14 @@ class TestCreditCardValidator < Test::Unit::TestCase
     assert !@v.is_allowed_card_type?('378282246310005')
 
   end
-    
+
   def test_card_type_allowance
     @v.options[:test_numbers_are_valid] = true
     assert @v.valid?('378282246310005')
     @v.options[:allowed_card_types] = [:visa]
     assert @v.valid?('4012888888881881')
     assert !@v.valid?('378282246310005')
-    
+
   end
-  
+
 end
