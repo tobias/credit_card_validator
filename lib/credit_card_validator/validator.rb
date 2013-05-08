@@ -5,7 +5,8 @@ module CreditCardValidator
     :maestro => /(^6759[0-9]{2}([0-9]{10})$)|(^6759[0-9]{2}([0-9]{12})$)|(^6759[0-9]{2}([0-9]{13})$)/,
     :diners_club => /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
     :amex => /^3[47][0-9]{13}$/,
-    :discover => /^6(?:011|5[0-9]{2})[0-9]{12}$/
+    :discover => /^6(?:011|5[0-9]{2})[0-9]{12}$/,
+    :jcb => /^(?:2131|1800|35\d{3})\d{11}$/
   }
 
   TEST_NUMBERS = {
@@ -21,9 +22,12 @@ module CreditCardValidator
       4111111111111111 4012888888881881 4222222222222
       4005519200000004 4009348888881881 4012000033330026
       4012000077777777 4217651111111119 4500600000000061
-      4000111111111115 }
+      4000111111111115 },
+    :jcb => %w{
+      3530111333300000 3566002020360505
+    }
   }.values.flatten
-  
+
   class Validator
     class << self
       def valid?(number)
@@ -32,18 +36,18 @@ module CreditCardValidator
           card_type(number) and
           (options[:test_numbers_are_valid] ? true : !is_test_number(number))
       end
-    
+
       def options
         @@options ||= {}
       end
-    
+
       def card_type(number)
         CARD_TYPES.keys.each do |t|
           return t.to_s if card_is(t, number)
         end
         nil
       end
-    
+
       def is_allowed_card_type?(number)
         card_type = card_type(number)
         return nil if card_type.nil?
@@ -53,7 +57,7 @@ module CreditCardValidator
           !card_type.nil?
         end
       end
-    
+
       def is_test_number(number)
         TEST_NUMBERS.include?(strip(number))
       end
@@ -65,10 +69,10 @@ module CreditCardValidator
           accum[1] += 1
           accum
         end
-        
+
         (total[0] % 10 == 0)
       end
-      
+
       CARD_TYPES.keys.each do |card_type|
         self.class_eval do
           define_method "is_#{card_type.to_s}?" do |number|
@@ -76,19 +80,19 @@ module CreditCardValidator
           end
         end
       end
-      
+
       protected
       def strip(number)
         number.gsub(/\s/,'')
       end
-      
+
       def rotate(number)
         if number > 9
           number = number % 10 + 1
         end
         number
       end
-      
+
       def card_is(type, number)
         type = type.to_sym
         (CARD_TYPES[type] and strip(number) =~ CARD_TYPES[type])
