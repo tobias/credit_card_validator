@@ -16,7 +16,7 @@ Usage:
   CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
   # limit the card types you allow
-  CreditCardValidator::Validator.options[:allowed_card_types] = [:visa, :mastercard]
+  CreditCardValidator::Validator.options[:allowed_card_types] = [:visa, :master_card]
   CreditCardValidator::Validator.valid?('1111 2222 3333 4444')
 
 Supported card types:
