@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.date = %q{2013-10-26}
   s.description = %q{A gem that provides credit card validation. It is basically a ruby port of the javascript credit card validator by Thomas Fuchs (madrobby) (http://github.com/madrobby/creditcard_js).}
   s.email = ["toby@tcrawley.org"]
-  s.extra_rdoc_files = ["Manifest.txt", "README.rdoc"]
-  s.files = ["Manifest.txt", "README.rdoc", "lib/credit_card_validator.rb", "lib/credit_card_validator/validator.rb", "bin/credit_card_validator"]
+  s.extra_rdoc_files = ["README.rdoc"]
+  s.files = ["README.rdoc", "lib/credit_card_validator.rb", "lib/credit_card_validator/validator.rb", "bin/credit_card_validator"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/tobias/credit_card_validator}
   s.rdoc_options = ["--main", "README.rdoc"]
