@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
   s.name = %q{credit_card_validator}
-  s.version = "1.1.0"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Tobias Crawley", "Bruce Hauman", "Phil McClure", "Gabriel Reis", "Eric Young", "Kyle Burton <kyle.burton@gmail.com>"]
-  s.date = %q{2011-06-17}
+  s.authors = ["Tobias Crawley", "Bruce Hauman", "Phil McClure", "Gabriel Reis", "Eric Young", "Kyle Burton <kyle.burton@gmail.com>", "Keitaroh Kobayashi", "Alan Ho"]
+  s.date = %q{2013-10-26}
   s.description = %q{A gem that provides credit card validation. It is basically a ruby port of the javascript credit card validator by Thomas Fuchs (madrobby) (http://github.com/madrobby/creditcard_js).}
-  s.email = ["tcrawley@gmail.com"]
-  s.extra_rdoc_files = ["History.txt", "Manifest.txt", "README.rdoc"]
-  s.files = ["History.txt", "Manifest.txt", "README.rdoc", "Rakefile", "lib/credit_card_validator.rb", "lib/credit_card_validator/validator.rb", "test/test_credit_card_validator.rb", "test/test_helper.rb", "bin/credit_card_validator"]
+  s.email = ["toby@tcrawley.org"]
+  s.extra_rdoc_files = ["Manifest.txt", "README.rdoc"]
+  s.files = ["Manifest.txt", "README.rdoc", "lib/credit_card_validator.rb", "lib/credit_card_validator/validator.rb", "bin/credit_card_validator"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/tobias/credit_card_validator}
   s.rdoc_options = ["--main", "README.rdoc"]
