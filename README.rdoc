@@ -2,6 +2,8 @@
 
 * http://github.com/tobias/credit_card_validator
 
+The latest version is 1.2.0, available at http://rubygems.org/gems/credit_card_validator.
+
 == DESCRIPTION:
 
 A gem that provides credit card validation. It is basically a ruby port of the javascript credit card validator by Thomas Fuchs (madrobby) (http://github.com/madrobby/creditcard_js).
@@ -105,7 +107,7 @@ Even from standard input:
 
 == LICENSE:
 
-Copyright (c) 2009-2011 Tobias Crawley & Bruce Hauman
+Copyright (c) 2009-2013 Tobias Crawley & Bruce Hauman
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
