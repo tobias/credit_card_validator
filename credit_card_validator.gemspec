@@ -16,29 +16,31 @@ Gem::Specification.new do |s|
   s.rubyforge_project = %q{credit_card_validator}
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{A gem that provides credit card validation}
-  s.test_files = ["test/test_credit_card_validator.rb", "test/test_helper.rb"]
   s.executables = %w[credit_card_validator]
 
-  deps = [
-      [%q<newgem>,   [">= 1.2.3"]],
-      [%q<hoe>,      [">= 1.8.0"]],
-      [%q<base_app>, [">= 1.0.5"]]
-  ]
+  dev_deps = [[%q<newgem>,   [">= 1.2.3"]],
+              [%q<hoe>,      [">= 1.8.0"]]]
+  
+  deps = [[%q<base_app>, [">= 1.0.5"]]]
+  
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      deps.each do |name,version|
+      dev_deps.each do |name,version|
         s.add_development_dependency(name,version)
       end
-    else
       deps.each do |name,version|
+        s.add_dependency(name, version)
+      end
+    else
+      (dev_deps + deps).each do |name,version|
         s.add_dependency(name,version)
       end
     end
   else
-    deps.each do |name,version|
+    (dev_deps + deps).each do |name,version|
       s.add_dependency(name,version)
     end
   end
