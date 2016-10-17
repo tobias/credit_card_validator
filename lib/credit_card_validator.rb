@@ -4,5 +4,5 @@ $:.unshift(File.dirname(__FILE__)) unless
 require File.join(File.dirname(__FILE__), 'credit_card_validator', 'validator')
 
 module CreditCardValidator
-  VERSION = '1.3.1'
+  VERSION = '1.3.2'
 end
