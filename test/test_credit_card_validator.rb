@@ -24,7 +24,10 @@ class TestCreditCardValidator < Test::Unit::TestCase
     assert !@v.is_visa?('30569309025904')
     assert !@v.is_visa?('371449635398431')
     assert !@v.is_visa?('6011000990139424')
+    assert @v.is_master_card?('2223000048400011')
     assert @v.is_master_card?('5555555555554444')
+    assert !@v.is_master_card?('2220000000000000')
+    assert !@v.is_master_card?('2721000000000004')
     assert @v.is_diners_club?('30569309025904')
     assert @v.is_amex?('371449635398431')
     assert @v.is_discover?('6011000990139424')
@@ -59,7 +62,8 @@ class TestCreditCardValidator < Test::Unit::TestCase
     30569309025904 38520000023237 6011111111111117
     6011000990139424 5555555555554444 5105105105105100
     4111111111111111 4012888888881881 4222222222222
-    3530111333300000 3566002020360505
+    3530111333300000 3566002020360505 2223000048400011
+    2223520043560014
   ).each do |n|
       assert @v.is_test_number(n)
     end
