@@ -2,7 +2,7 @@
 
 * http://github.com/tobias/credit_card_validator
 
-The latest version is 1.2.0, available at http://rubygems.org/gems/credit_card_validator.
+The latest version is 1.3.1, available at http://rubygems.org/gems/credit_card_validator.
 
 == DESCRIPTION:
 
