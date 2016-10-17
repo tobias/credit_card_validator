@@ -25,6 +25,7 @@ class TestCreditCardValidator < Test::Unit::TestCase
     assert !@v.is_visa?('371449635398431')
     assert !@v.is_visa?('6011000990139424')
     assert @v.is_master_card?('2223000048400011')
+    assert @v.is_master_card?('2230000000000008')
     assert @v.is_master_card?('5555555555554444')
     assert !@v.is_master_card?('2220000000000000')
     assert !@v.is_master_card?('2721000000000004')
